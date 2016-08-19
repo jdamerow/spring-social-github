@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2014 the original author or authors.
+ * Copyright 2013-2016 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,6 +42,8 @@ public class GitHubUserProfile implements Serializable {
 	private String blog;
 
 	private String email;
+	
+	private GitHubEmail primaryEmail;
 
     public GitHubUserProfile(long id, String login, String avatarUrl, Date createdAt) {
         this.id = id;
@@ -104,5 +106,13 @@ public class GitHubUserProfile implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public GitHubEmail getPrimaryEmail() {
+        return primaryEmail;
+    }
+
+    public void setPrimaryEmail(GitHubEmail primaryEmail) {
+        this.primaryEmail = primaryEmail;
     }
 }

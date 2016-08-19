@@ -13,6 +13,7 @@ configure(allprojects) {
     apply plugin: 'eclipse'
     apply plugin: 'idea'
     apply plugin: 'javadocHotfix'
+    apply plugin: 'maven-publish'
 
     group = 'org.springframework.social'
 
@@ -52,6 +53,15 @@ configure(allprojects) {
     eclipse.classpath.file.whenMerged { classpath ->
         classpath.entries.findAll { entry -> entry.path.contains('servlet-api') }*.exported = false
     }
+    
+    publishing {
+   	 	publications {
+        	myPublication(MavenPublication) {
+           		// telling gradle to publish project's jar archive (2)
+            	from components.java
+        	}
+    	}
+	}
 }
 
 configure(subprojects) { subproject ->

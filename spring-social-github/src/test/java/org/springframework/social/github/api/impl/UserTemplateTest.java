@@ -37,12 +37,17 @@ public class UserTemplateTest extends AbstractGitHubApiTest {
 		mockServer.expect(requestTo("https://api.github.com/user")).andExpect(method(GET))
 				.andExpect(header("Authorization", "Bearer ACCESS_TOKEN"))
 				.andRespond(withSuccess(new ClassPathResource("profile.json", getClass()), MediaType.APPLICATION_JSON));
+		mockServer.expect(requestTo("https://api.github.com/user/emails")).andExpect(method(GET))
+			.andExpect(header("Authorization", "Bearer ACCESS_TOKEN"))
+			.andRespond(withSuccess(new ClassPathResource("emails.json", getClass()), MediaType.APPLICATION_JSON));
+
 		GitHubUserProfile profile = gitHub.userOperations().getUserProfile();
 		assertEquals("habuma", profile.getLogin());
 		assertEquals("Craig Walls", profile.getName());
 		assertEquals("SpringSource", profile.getCompany());
 		assertEquals("http://blog.springsource.com/author/cwalls/", profile.getBlog());
 		assertEquals("cwalls at vmware.com", profile.getEmail());
+		assertEquals("octocat@github.com", profile.getPrimaryEmail().getEmail());
 		assertEquals(167926, profile.getId());
 	}
 
@@ -51,6 +56,9 @@ public class UserTemplateTest extends AbstractGitHubApiTest {
 		mockServer.expect(requestTo("https://api.github.com/user")).andExpect(method(GET))
 				.andExpect(header("Authorization", "Bearer ACCESS_TOKEN"))
 				.andRespond(withSuccess(new ClassPathResource("profile.json", getClass()), MediaType.APPLICATION_JSON));
+		mockServer.expect(requestTo("https://api.github.com/user/emails")).andExpect(method(GET))
+				.andExpect(header("Authorization", "Bearer ACCESS_TOKEN"))
+				.andRespond(withSuccess(new ClassPathResource("emails.json", getClass()), MediaType.APPLICATION_JSON));
 		assertEquals("habuma", gitHub.userOperations().getProfileId());
 	}
 
@@ -59,6 +67,9 @@ public class UserTemplateTest extends AbstractGitHubApiTest {
 		mockServer.expect(requestTo("https://api.github.com/user")).andExpect(method(GET))
 				.andExpect(header("Authorization", "Bearer ACCESS_TOKEN"))
 				.andRespond(withSuccess(new ClassPathResource("profile.json", getClass()), MediaType.APPLICATION_JSON));
+		mockServer.expect(requestTo("https://api.github.com/user/emails")).andExpect(method(GET))
+				.andExpect(header("Authorization", "Bearer ACCESS_TOKEN"))
+				.andRespond(withSuccess(new ClassPathResource("emails.json", getClass()), MediaType.APPLICATION_JSON));
 		assertEquals("https://github.com/habuma", gitHub.userOperations().getProfileUrl());
 	}
 	
