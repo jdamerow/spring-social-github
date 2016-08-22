@@ -55,13 +55,13 @@ configure(allprojects) {
     }
     
     publishing {
-   	 	publications {
-        	myPublication(MavenPublication) {
-           		// telling gradle to publish project's jar archive (2)
-            	from components.java
-        	}
-    	}
-	}
+   	    publications {
+            myPublication(MavenPublication) {
+           	    // telling gradle to publish project's jar archive (2)
+                from components.java
+            }
+        }
+    }
 }
 
 configure(subprojects) { subproject ->
