@@ -20,11 +20,15 @@ import static java.util.Arrays.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import org.springframework.social.github.api.GitHubEmail;
 import org.springframework.social.github.api.GitHubUser;
 import org.springframework.social.github.api.GitHubUserProfile;
 import org.springframework.social.github.api.UserOperations;
@@ -62,9 +66,26 @@ public class UserTemplate extends AbstractGitHubOperations implements UserOperat
 	public String getProfileId() {
 		return getUserProfile().getLogin();
 	}
+	
+	public List<GitHubEmail> getEmails() {
+	    GitHubEmail[] emails = restTemplate.getForObject(buildUri("user/emails"), GitHubEmail[].class);
+	    if (emails != null && emails.length > 0) {
+	    	return Arrays.asList(emails);
+	    }
+	    
+	    return new ArrayList<GitHubEmail>();
+	}
 
 	public GitHubUserProfile getUserProfile() {
-		return restTemplate.getForObject(buildUri("user"), GitHubUserProfile.class);
+		GitHubUserProfile profile = restTemplate.getForObject(buildUri("user"), GitHubUserProfile.class);
+		List<GitHubEmail> emails = getEmails();
+		for (GitHubEmail email : emails) {
+			if (email.isPrimary()) {
+				profile.setPrimaryEmail(email);
+				break;
+			}
+		}
+		return profile;
 	}
 
 	public String getProfileUrl() {

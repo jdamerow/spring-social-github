@@ -32,6 +32,7 @@ public class GitHubConnectionFactory extends OAuth2ConnectionFactory<GitHub> {
 	 */
 	public GitHubConnectionFactory(String clientId, String clientSecret) {
 		super("github", new GitHubServiceProvider(clientId, clientSecret), new GitHubAdapter());
+		setScope("user");
 	}
 
 }

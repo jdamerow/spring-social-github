@@ -50,7 +50,11 @@ public class GitHubAdapter implements ApiAdapter<GitHub> {
 
 	public UserProfile fetchUserProfile(GitHub github) {
 		GitHubUserProfile profile = github.userOperations().getUserProfile();
-		return new UserProfileBuilder().setName(profile.getName()).setEmail(profile.getEmail()).setUsername(profile.getLogin()).build();
+		String email = profile.getEmail();
+		if (email == null && profile.getPrimaryEmail() != null) {
+			email = profile.getPrimaryEmail().getEmail();
+		}
+		return new UserProfileBuilder().setName(profile.getName()).setEmail(email).setUsername(profile.getLogin()).build();
 	}
 	
 	public void updateStatus(GitHub github, String message) {
