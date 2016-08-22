@@ -25,31 +25,36 @@ import java.io.Serializable;
  */
 public class GitHubEmail implements Serializable {
 
-    /**
+	/**
      * 
      */
-    private static final long serialVersionUID = 5997745951588663115L;
-    
-    private String email;
-    private boolean verified;
-    private boolean primary;
-    
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public boolean isVerified() {
-        return verified;
-    }
-    public void setVerified(boolean verified) {
-        this.verified = verified;
-    }
-    public boolean isPrimary() {
-        return primary;
-    }
-    public void setPrimary(boolean primary) {
-        this.primary = primary;
-    }
+	private static final long serialVersionUID = 5997745951588663115L;
+
+	private String email;
+	private boolean verified;
+	private boolean primary;
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public boolean isVerified() {
+		return verified;
+	}
+
+	public void setVerified(boolean verified) {
+		this.verified = verified;
+	}
+
+	public boolean isPrimary() {
+		return primary;
+	}
+
+	public void setPrimary(boolean primary) {
+		this.primary = primary;
+	}
 }

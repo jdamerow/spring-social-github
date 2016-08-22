@@ -108,11 +108,11 @@ public class GitHubUserProfile implements Serializable {
         this.email = email;
     }
 
-    public GitHubEmail getPrimaryEmail() {
-        return primaryEmail;
-    }
+	public GitHubEmail getPrimaryEmail() {
+		return primaryEmail;
+	}
 
-    public void setPrimaryEmail(GitHubEmail primaryEmail) {
-        this.primaryEmail = primaryEmail;
-    }
+	public void setPrimaryEmail(GitHubEmail primaryEmail) {
+		this.primaryEmail = primaryEmail;
+	}
 }
