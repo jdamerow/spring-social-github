@@ -33,6 +33,7 @@ public class GitHubEmail implements Serializable {
 	private String email;
 	private boolean verified;
 	private boolean primary;
+	private String visibility;
 
 	public String getEmail() {
 		return email;
@@ -56,5 +57,13 @@ public class GitHubEmail implements Serializable {
 
 	public void setPrimary(boolean primary) {
 		this.primary = primary;
+	}
+
+	public String getVisibility() {
+		return visibility;
+	}
+
+	public void setVisibility(String visibility) {
+		this.visibility = visibility;
 	}
 }
