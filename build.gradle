@@ -1,6 +1,6 @@
 buildscript {
     repositories {
-        maven { url 'http://repo.spring.io/plugins-release' }
+        maven { url 'https://repo.spring.io/plugins-release' }
     }
     dependencies {
         classpath 'org.springframework.build.gradle:docbook-reference-plugin:0.2.8'
@@ -37,8 +37,8 @@ configure(allprojects) {
 
     repositories {
         mavenLocal()
-        maven { url "http://repo.spring.io/libs-snapshot" }
-        maven { url "http://repo.spring.io/ebr-maven-external" }
+        maven { url "https://repo.spring.io/libs-snapshot" }
+        maven { url "https://repo.spring.io/ebr-maven-external" }
     }
 
     dependencies {
@@ -140,7 +140,7 @@ configure(rootProject) {
         options.header = rootProject.description
         options.overview = 'src/api/overview.html'
         options.links(
-            'http://docs.jboss.org/jbossas/javadoc/4.0.5/connector'
+            'https://docs.jboss.org/jbossas/javadoc/4.0.5/connector'
         )
         source subprojects.collect { project ->
             project.sourceSets.main.allJava
@@ -185,7 +185,7 @@ configure(rootProject) {
             }?.withInputStream { schemas.load(it) }
 
             for (def key : schemas.keySet()) {
-                def shortName = key.replaceAll(/http.*schema.(.*).spring-.*/, '$1')
+                def shortName = key.replaceAll(/https.*schema.(.*).spring-.*/, '$1')
                 assert shortName != key
                 File xsdFile = subproject.sourceSets.main.resources.find {
                     it.path.endsWith(schemas.get(key))
