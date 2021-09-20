@@ -133,7 +133,7 @@ configure(rootProject) {
         options.header = rootProject.description
         options.overview = 'src/api/overview.html'
         options.links(
-            'http://docs.jboss.org/jbossas/javadoc/4.0.5/connector'
+            'https://docs.jboss.org/jbossas/javadoc/4.0.5/connector'
         )
         source subprojects.collect { project ->
             project.sourceSets.main.allJava
