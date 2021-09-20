@@ -102,6 +102,7 @@ public class GitHubOAuth2Template extends OAuth2Template {
 		if (additionalParameters != null) {
 			params.putAll(additionalParameters);
 		}
+		System.out.println("Posting to: " + accessTokenUrl);
 		logger.debug("Posting to: " + accessTokenUrl);
 		return postForAccessGrant(accessTokenUrl, params);
 	}
