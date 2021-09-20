@@ -17,6 +17,7 @@ package org.springframework.social.github.connect;
 
 import org.springframework.social.github.api.GitHub;
 import org.springframework.social.github.api.impl.GitHubTemplate;
+import org.springframework.social.github.oauth2.GitHubOAuth2Template;
 import org.springframework.social.oauth2.AbstractOAuth2ServiceProvider;
 import org.springframework.social.oauth2.OAuth2Template;
 
@@ -31,7 +32,7 @@ public class GitHubServiceProvider extends AbstractOAuth2ServiceProvider<GitHub>
 	}
 
 	private static OAuth2Template createOAuth2Template(String clientId, String clientSecret) {
-		OAuth2Template oAuth2Template = new OAuth2Template(clientId, clientSecret, "https://github.com/login/oauth/authorize", "https://github.com/login/oauth/access_token");
+		OAuth2Template oAuth2Template = new GitHubOAuth2Template(clientId, clientSecret, "https://github.com/login/oauth/authorize", "https://github.com/login/oauth/access_token");
 		oAuth2Template.setUseParametersForClientAuthentication(true);
 		return oAuth2Template;
 	}
