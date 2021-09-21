@@ -105,15 +105,6 @@ public class GitHubOAuth2Template extends OAuth2Template {
 			params.putAll(additionalParameters);
 		}
 		logger.debug("Posting to: " + accessTokenUrl);
-		try {
-			String str = "Posting to: " + accessTokenUrl;
-			str += params.toString();
-		    BufferedWriter writer = new BufferedWriter(new FileWriter("/home/tomcat/debug.txt"));
-		    writer.write(str);
-		    writer.close();
-		} catch (Exception e) {
-			logger.error("Error", e);
-		}
 		return postForAccessGrant(accessTokenUrl, params);
 	}
 	
