@@ -15,6 +15,8 @@
  */
 package org.springframework.social.github.oauth2;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
@@ -102,8 +104,16 @@ public class GitHubOAuth2Template extends OAuth2Template {
 		if (additionalParameters != null) {
 			params.putAll(additionalParameters);
 		}
-		System.out.println("Posting to: " + accessTokenUrl);
 		logger.debug("Posting to: " + accessTokenUrl);
+		try {
+			String str = "Posting to: " + accessTokenUrl;
+			str += params.toString();
+		    BufferedWriter writer = new BufferedWriter(new FileWriter("/home/jdamerow/debug.txt"));
+		    writer.write(str);
+		    writer.close();
+		} catch (Exception e) {
+			logger.error("Error", e);
+		}
 		return postForAccessGrant(accessTokenUrl, params);
 	}
 	
