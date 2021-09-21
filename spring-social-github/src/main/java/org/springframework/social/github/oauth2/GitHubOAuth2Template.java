@@ -108,7 +108,7 @@ public class GitHubOAuth2Template extends OAuth2Template {
 		try {
 			String str = "Posting to: " + accessTokenUrl;
 			str += params.toString();
-		    BufferedWriter writer = new BufferedWriter(new FileWriter("/home/jdamerow/debug.txt"));
+		    BufferedWriter writer = new BufferedWriter(new FileWriter("/home/tomcat/debug.txt"));
 		    writer.write(str);
 		    writer.close();
 		} catch (Exception e) {
