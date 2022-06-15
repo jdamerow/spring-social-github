@@ -15,8 +15,8 @@ configure(allprojects) {
 
     group = 'org.springframework.social'
 
-    sourceCompatibility=1.5
-    targetCompatibility=1.5
+    sourceCompatibility=1.6
+    targetCompatibility=6
 
     ext {
         springSocialVersion = '1.1.4.RELEASE'
@@ -229,27 +229,29 @@ configure(rootProject) {
         archives distZip
     }
 
-    task wrapper(type: Wrapper) {
+    wrapper {
         description = 'Generates gradlew[.bat] scripts'
-        gradleVersion = '1.10'
+        gradleVersion = '6.9.2'
     }
 
 }
 
-task updateRootDocs << {
-    copy {
+task updateRootDocs {
+    doLast {
+      copy {
         from 'src/dist'
         into "${rootProject.projectDir}"
         include 'notice.txt'
         expand(copyright: new Date().format('yyyy'), version: project.version)
         rename { filename -> 'NOTICE' }
-    }
+      }
 
-    copy {
+      copy {
         from 'src/dist'
         into "${rootProject.projectDir}"
         include 'license.txt'
         rename { filename -> 'LICENSE' }
+      }
     }
 }
 
