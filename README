@@ -31,3 +31,17 @@ To install as Maven artificat, run:
 
 ./gradlew publishToMavenLocal
 ===============================================================================
+
+To install via Docker, run:
+docker run --rm -v "$PWD":/usr/src/myapp arm64v8/openjdk:8u131-jdk tail -f /dev/null
+
+Then connect to Docker (where silly_dubinsky is the name of your container):
+docker exec -it silly_dubinsky bash
+
+In Docker:
+./gradlew publishToMavenLocal
+cp -r  .m2/repository/org/springframework/social/spring-social-github/ /usr/src/myapp/
+
+Then copy created Maven dependency from /usr/src/myapp/ to your ~/.m2 repository folder.
+================================================================================
+
